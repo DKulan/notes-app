@@ -41,7 +41,6 @@ document.querySelector('#search-text').addEventListener('input', e => {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#name-form').addEventListener('submit', e => {
-    e.preventDefault()
-    console.log(e.target.elements.firstName.value)
+document.querySelector('#for-fun').addEventListener('change', e => {
+    e.target.checked
 })
