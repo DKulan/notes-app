@@ -1,5 +1,6 @@
 // DOM - Document Object Model
 
+
 const notes = [{
     title: 'My next trip',
     body: 'I would like to go to Spain'
@@ -35,11 +36,12 @@ document.querySelector('#create-note').addEventListener('click', e => {
 
 })
 
-document.querySelector('#remove-all').addEventListener('click', e => {
-
-})
-
 document.querySelector('#search-text').addEventListener('input', e => {
     filters.searchText = e.target.value
     renderNotes(notes, filters)
+})
+
+document.querySelector('#name-form').addEventListener('submit', e => {
+    e.preventDefault()
+    console.log(e.target.elements.firstName.value)
 })
