@@ -1,19 +1,17 @@
 // DOM - Document Object Model
 
 
-const notes = [{
-    title: 'My next trip',
-    body: 'I would like to go to Spain'
-}, {
-    title: 'Habbits to work on',
-    body: 'Exercise, Eating a bit better'
-}, {
-    title: 'Office modification',
-    body: 'Get a new seat'
-}]
+let notes = []
 
 const filters = {
     searchText: ''
+}
+
+// Check for existing saved data
+const notesJSON = localStorage.getItem('notes')
+
+if (notesJSON !== null) {
+    notes = JSON.parse(notesJSON)
 }
 
 const renderNotes = (notes, filters) => {
@@ -25,7 +23,13 @@ const renderNotes = (notes, filters) => {
 
     filteredNotes.forEach(note => {
         const noteEl = document.createElement('p')
-        noteEl.textContent = note.title
+
+        if (note.title.length > 0) {
+            noteEl.textContent = note.title
+        } else {
+            noteEl.textContent = 'empty title'
+        }
+
         document.querySelector('#notes').appendChild(noteEl)
     })
 }
@@ -33,7 +37,12 @@ const renderNotes = (notes, filters) => {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', e => {
-
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, filters)
 })
 
 document.querySelector('#search-text').addEventListener('input', e => {
