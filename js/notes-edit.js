@@ -8,15 +8,18 @@ if (note === undefined) {
     location.assign('/index.html')
 }
 
-document.querySelector('#note-title').value = note.title
-document.querySelector('#note-body').value = note.body
+const titleElement = document.querySelector('#note-title')
+const bodyElement = document.querySelector('#note-body')
 
-document.querySelector('#note-title').addEventListener('input', e => {
+titleElement.value = note.title
+bodyElement.value = note.body
+
+titleElement.addEventListener('input', e => {
     note.title = e.target.value
     saveNotes(notes)
 })
 
-document.querySelector('#note-body').addEventListener('input', e => {
+bodyElement.addEventListener('input', e => {
     note.body = e.target.value
     saveNotes(notes)
 })
