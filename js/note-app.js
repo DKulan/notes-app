@@ -11,6 +11,7 @@ renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', e => {
     notes.push({
+        id: uuidv4(),
         title: '',
         body: ''
     })
@@ -23,6 +24,6 @@ document.querySelector('#search-text').addEventListener('input', e => {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#filter-by').addEventListener('change', e => {
+document.querySelector('#filters-by').addEventListener('change', e => {
 
 })
