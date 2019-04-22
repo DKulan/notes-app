@@ -4,7 +4,8 @@
 let notes = getSavedNotes()
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    sortBy : 'byEdited'
 }
 
 renderNotes(notes, filters)
@@ -29,9 +30,10 @@ document.querySelector('#search-text').addEventListener('input', e => {
     renderNotes(notes, filters)
 })
 
-// document.querySelector('#filters-by').addEventListener('change', e => {
-//
-// })
+document.querySelector('#filter-by').addEventListener('change', e => {
+    filters.sortBy = e.target.value
+    renderNotes(notes, filters)
+})
 
 window.addEventListener('storage', e => {
     if (e.key === 'notes') {
@@ -39,10 +41,3 @@ window.addEventListener('storage', e => {
         renderNotes(notes, filters)
     }
 })
-
-/*
-    Challenge
-    1. Add createdAt and updatedAt to the new notes (store timestamp)
-    2. Update updatedAt when someone edits a title or body
-    3. Delete all old notes before testing
- */
