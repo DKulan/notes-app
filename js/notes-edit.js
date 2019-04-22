@@ -15,11 +15,13 @@ bodyElement.value = note.body
 
 titleElement.addEventListener('input', e => {
     note.title = e.target.value
+    note.updatedAt = moment().valueOf()
     saveNotes(notes)
 })
 
 bodyElement.addEventListener('input', e => {
     note.body = e.target.value
+    note.updatedAt = moment().valueOf()
     saveNotes(notes)
 })
 
