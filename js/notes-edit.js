@@ -1,5 +1,14 @@
+/*
+    Challenge
+    1. Add a DOM element between the title and body inputs (empty span)
+    2. Set text value: Last edited 4 hours ago
+    3. Update value on title/body/storage change
+ */
+
+
 const noteId = location.hash.substring(1)
 const titleElement = document.querySelector('#note-title')
+const dateElement = document.querySelector('#last-edited')
 const bodyElement = document.querySelector('#note-body')
 let notes = getSavedNotes()
 let note = notes.find(note => {
@@ -12,16 +21,19 @@ if (note === undefined) {
 
 titleElement.value = note.title
 bodyElement.value = note.body
+dateElement.textContent = generateLastEdited(note.updatedAt)
 
 titleElement.addEventListener('input', e => {
     note.title = e.target.value
     note.updatedAt = moment().valueOf()
+    dateElement.textContent = generateLastEdited(note.updatedAt)
     saveNotes(notes)
 })
 
 bodyElement.addEventListener('input', e => {
     note.body = e.target.value
     note.updatedAt = moment().valueOf()
+    dateElement.textContent = generateLastEdited(note.updatedAt)
     saveNotes(notes)
 })
 
@@ -45,5 +57,6 @@ window.addEventListener('storage', e => {
 
         titleElement.value = note.title
         bodyElement.value = note.body
+        dateElement.textContent = generateLastEdited(note.updatedAt)
     }
 })
