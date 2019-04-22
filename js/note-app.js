@@ -1,7 +1,7 @@
 // DOM - Document Object Model
 
 
-const notes = getSavedNotes()
+let notes = getSavedNotes()
 
 const filters = {
     searchText: ''
@@ -26,6 +26,13 @@ document.querySelector('#search-text').addEventListener('input', e => {
     renderNotes(notes, filters)
 })
 
-document.querySelector('#filters-by').addEventListener('change', e => {
+// document.querySelector('#filters-by').addEventListener('change', e => {
+//
+// })
 
+window.addEventListener('storage', e => {
+    if (e.key === 'notes') {
+        notes = JSON.parse(e.newValue)
+        renderNotes(notes, filters)
+    }
 })
