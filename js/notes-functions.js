@@ -27,8 +27,12 @@ const removeNote = id => {
 // Generate the DOM structure for a note
 const generateNoteDOM = note => {
     const noteEl = document.createElement('div')
+    const ahrefEl = document.createElement('a')
     const textEl = document.createElement('span')
     const button = document.createElement('button')
+
+    ahrefEl.setAttribute('href', `/note.html#${note.id}`)
+    ahrefEl.appendChild(textEl)
 
     button.textContent = 'x'
     noteEl.appendChild(button)
@@ -44,7 +48,7 @@ const generateNoteDOM = note => {
         textEl.textContent = 'empty title'
     }
 
-    noteEl.appendChild(textEl)
+    noteEl.appendChild(ahrefEl)
 
     return noteEl
 }
