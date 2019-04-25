@@ -1,6 +1,4 @@
 // DOM - Document Object Model
-
-
 let notes = getSavedNotes()
 
 const filters = {
@@ -11,7 +9,7 @@ const filters = {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', e => {
-    const id = uuidv4()
+    const id = uuid.v4()
     const timestamp = moment().valueOf()
 
     notes.push({

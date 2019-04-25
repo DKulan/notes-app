@@ -1,11 +1,7 @@
 // Check for existing saved data in local storage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
-    if (notesJSON !== null) {
-        return JSON.parse(notesJSON)
-    } else {
-        return []
-    }
+    return notesJSON !== null ? JSON.parse(notesJSON) : []
 }
 
 // Save the notes to local storage
@@ -15,9 +11,7 @@ const saveNotes = notes => {
 
 // Remove a note from the list
 const removeNote = id => {
-    const noteIndex = notes.findIndex(note => {
-        return note.id === id
-    })
+    const noteIndex = notes.findIndex(note => note.id === id)
 
     if (noteIndex > -1) {
         notes.splice(noteIndex, 1)
@@ -42,11 +36,7 @@ const generateNoteDOM = note => {
         renderNotes(notes, filters)
     })
 
-    if (note.title.length > 0) {
-        textEl.textContent = note.title
-    } else {
-        textEl.textContent = 'empty title'
-    }
+    note.title.length > 0 ? textEl.textContent = note.title : textEl.textContent = 'empty title'
 
     noteEl.appendChild(ahrefEl)
 
@@ -92,9 +82,7 @@ const sortNotes = (notes, sortBy) => {
 // Render app notes
 const renderNotes = (notes, filters) => {
     notes = sortNotes(notes, filters.sortBy)
-    const filteredNotes = notes.filter(note => {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
-    })
+    const filteredNotes = notes.filter(note => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
     document.querySelector('#notes').innerHTML = ''
 
@@ -105,6 +93,4 @@ const renderNotes = (notes, filters) => {
 }
 
 // Generate the last edited message
-const generateLastEdited = timestamp => {
-    return `Last edited ${moment(timestamp).fromNow()}`
-}
+const generateLastEdited = timestamp => `Last edited ${moment(timestamp).fromNow()}`
