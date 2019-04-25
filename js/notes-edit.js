@@ -1,11 +1,3 @@
-/*
-    Challenge
-    1. Add a DOM element between the title and body inputs (empty span)
-    2. Set text value: Last edited 4 hours ago
-    3. Update value on title/body/storage change
- */
-
-
 const noteId = location.hash.substring(1)
 const titleElement = document.querySelector('#note-title')
 const dateElement = document.querySelector('#last-edited')
@@ -15,7 +7,7 @@ let note = notes.find(note => {
     return note.id === noteId
 })
 
-if (note === undefined) {
+if (!note) {
     location.assign('/index.html')
 }
 
@@ -51,7 +43,7 @@ window.addEventListener('storage', e => {
             return note.id === noteId
         })
 
-        if (note === undefined) {
+        if (!note) {
             location.assign('/index.html')
         }
 
