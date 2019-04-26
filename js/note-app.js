@@ -1,3 +1,5 @@
+'use strict'
+
 // DOM - Document Object Model
 let notes = getSavedNotes()
 

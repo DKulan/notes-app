@@ -1,3 +1,5 @@
+'use strict'
+
 const noteId = location.hash.substring(1)
 const titleElement = document.querySelector('#note-title')
 const dateElement = document.querySelector('#last-edited')
